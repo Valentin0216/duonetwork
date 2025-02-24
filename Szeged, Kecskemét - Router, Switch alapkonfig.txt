@@ -1,0 +1,99 @@
+|----------------------|
+|Szeged - Raktár Router|
+|----------------------|
+
+ena
+clock set 12:00:00 24 febr 2025
+conf t
+host Szeged_Raktar_Router
+sec pass min-l 8
+login block-for 30 att 5 with 60
+ena sec class123
+no ip domain-l
+lin con 0
+pass cisco123
+login
+logg syn
+exec 5
+lin vty 0 15
+pass cisco123
+login
+logg syn
+exec 5
+exit
+ser pass
+banner motd "Privat Halozat!"
+copy run st
+
+
+int g0/0
+ip add 172.16.1.1 255.255.255.0
+no sh
+desc Szeged_Raktar_Switch fele
+exit
+
+int s0/0/0
+ip add 85.50.50.13 255.255.255.252
+no sh
+desc 
+exit
+
+ip domain-name xyz.hu
+crypto k g r 
+2048
+username rg priv 15 sec cisco123
+ip ssh ver 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+
+copy run st
+
+
+
+
+|----------------------|
+|Szeged - Raktár Switch|
+|----------------------|
+
+ena
+clock set 12:00:00 24 febr 2025
+conf t
+host Szeged_Raktar_Switch
+ena sec class123
+no ip domain-l
+lin con 0
+pass cisco123
+login
+logg syn
+exec 5
+lin vty 0 15
+pass cisco123
+login
+logg syn
+exec 5
+exit
+ser pass
+banner motd "Privat Halozat!"
+copy run st
+
+
+
+ip domain-name xyz.hu
+crypto k g r 
+2048
+username rg priv 15 sec cisco123
+ip ssh ver 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+
+copy run st
+
+
+
+
