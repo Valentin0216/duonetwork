@@ -1,0 +1,112 @@
+###########################
+####### Baja - Bolt #######
+###########################
+
+###############################
+Konfigurálandó eszközök:
+	- R_Bolt_Baja (NINCS KÉSZ)
+	- SW_Bolt_Baja (KÉSZ)
+	- PC_Bolt_Baja (KÉSZ)
+	- PC_Bolt_Baja_2 (KÉSZ)
+	- Printer_Bolt_Baja (KÉSZ)
+###############################
+
+#############
+AMI MÉG KELL:
+ - ROUTOLÁS (R_Baja)
+#############
+
+############
+R_Bolt_Baja:
+############
+ena
+clock set 12:00 feb 24 2025
+conf t
+host R_Bolt_Baja
+security passwords min-length 8
+login block-for 120 attempts 3 within 30
+ena sec class123
+no ip domain-lookup
+line con 0
+pass cisco123
+login
+logg syn
+exec 5
+exit
+line vty 0 15
+pass cisco123
+login
+logg syn
+exec 5
+exit
+ser pass
+banner motd "Ez egy privat router!"
+ipv6 unicast-routing
+
+int gig0/1
+des SW_Bolt_Baja fele
+ip add 192.168.50.1 255.255.255.0
+ipv6 add 2008:db8:50::1/64
+ipv6 add fe80::1 link-local
+no sh
+exit
+
+int se0/0/0
+ip add 85.50.50.10 255.255.255.252
+des ISP fele
+no sh
+exit
+
+ip domain-name xyz.hu
+crypto key generate rsa
+2048
+username rg priv 15 secret cisco123
+ip ssh version 2
+line vty 0 15
+login local
+transport input ssh
+exit
+
+copy running-config startup-config
+
+
+#############
+SE_Bolt_Baja:
+#############
+ena
+clock set 12:00 feb 24 2025
+conf t
+host SW_Bolt_Baja
+ena sec class123
+no ip domain-lookup
+line con 0
+pass cisco123
+login
+logg syn
+exec 5
+exit
+line vty 0 15
+pass cisco123
+login
+logg syn
+exec 5
+exit
+ser pass
+banner motd "Ez egy privat switch!"
+
+int vlan1
+ip add 192.168.50.2 255.255.255.0
+no sh
+exit
+
+ip domain-name xyz.hu
+crypto key generate rsa
+2048
+username rg priv 15 secret cisco123
+ip ssh version 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+copy running-config startup-config
