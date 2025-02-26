@@ -79,6 +79,10 @@ ser pass
 banner motd "Privat Halozat!"
 copy run st
 
+int vlan 1
+ip add 172.16.1.50 255.255.255.0
+no sh
+exit
 
 
 ip domain-name xyz.hu
@@ -94,6 +98,255 @@ exit
 
 copy run st
 
+
+|-----------------------|
+|Kecskemét - Bolt Router|
+|-----------------------|
+
+
+
+ena
+clock set 12:00:00 24 febr 2025
+conf t
+host Kecskemet_Bolt_Router
+sec pass min-l 8
+login block-for 30 att 5 with 60
+ena sec class123
+no ip domain-l
+lin con 0
+pass cisco123
+login
+logg syn
+exec 5
+lin vty 0 15
+pass cisco123
+login
+logg syn
+exec 5
+exit
+ser pass
+banner motd "Privat Halozat!"
+copy run st
+
+
+int g0/1
+ip add 172.16.20.1 255.255.255.0
+no sh
+desc Kecskemet_Bolt_Switch fele
+exit
+
+int g0/0
+
+ip domain-name xyz.hu
+crypto k g r 
+2048
+username rg priv 15 sec cisco123
+ip ssh ver 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+
+copy run st
+
+
+|-----------------------|
+|Kecskemét - Bolt Switch|
+|-----------------------|
+
+
+ena
+clock set 12:00:00 24 febr 2025
+conf t
+host Kecskemet_Bolt_Switch
+ena sec class123
+no ip domain-l
+lin con 0
+pass cisco123
+login
+logg syn
+exec 5
+lin vty 0 15
+pass cisco123
+login
+logg syn
+exec 5
+exit
+ser pass
+banner motd "Privat Halozat!"
+copy run st
+
+
+int g0/1
+no sh
+desc Kecskemet_Bolt_Router fele
+exit
+
+ip domain-name xyz.hu
+crypto k g r 
+2048
+username rg priv 15 sec cisco123
+ip ssh ver 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+
+copy run st
+
+
+|------------------------|
+|Kecskemét - Iroda Router|
+|------------------------|
+
+
+
+ena
+clock set 12:00:00 24 febr 2025
+conf t
+host Kecskemet_Iroda_Router
+sec pass min-l 8
+login block-for 30 att 5 with 60
+ena sec class123
+no ip domain-l
+lin con 0
+pass cisco123
+login
+logg syn
+exec 5
+lin vty 0 15
+pass cisco123
+login
+logg syn
+exec 5
+exit
+ser pass
+banner motd "Privat Halozat!"
+copy run st
+
+
+int g0/0
+ip add 172.16.10.1 255.255.255.128
+desc Kecskemet_Tuzfal fele
+exit
+int g0/2
+ip add 172.16.10.129 255.255.255.128
+desc Kecskemet_Switch_Iroda2 fele
+
+-- int s0/0/0 nincs --
+
+ip domain-name xyz.hu
+crypto k g r 
+2048
+username rg priv 15 sec cisco123
+ip ssh ver 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+
+copy run st
+
+
+|-------------------------|
+|Kecskemét - Iroda Switch2|
+|-------------------------|
+
+
+ena
+clock set 12:00:00 24 febr 2025
+conf t
+host Kecskemet_Iroda_Switch2
+ena sec class123
+no ip domain-l
+lin con 0
+pass cisco123
+login
+logg syn
+exec 5
+lin vty 0 15
+pass cisco123
+login
+logg syn
+exec 5
+exit
+ser pass
+banner motd "Privat Halozat!"
+copy run st
+
+
+int g0/1
+no sh
+desc Kecskemet_Iroda_Router fele
+exit
+
+int g1/1
+no sh
+desc Kecskemet_Iroda_WLC fele
+exit
+int g2/1
+no sh
+desc Kecskemet_LWAP fele
+ip domain-name xyz.hu
+crypto k g r 
+2048
+username rg priv 15 sec cisco123
+ip ssh ver 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+
+copy run st
+
+|------------------------|
+|Kecskemét - Iroda Switch|
+|------------------------|
+
+
+ena
+clock set 12:00:00 24 febr 2025
+conf t
+host Kecskemet_Iroda_Switch
+ena sec class123
+no ip domain-l
+lin con 0
+pass cisco123
+login
+logg syn
+exec 5
+lin vty 0 15
+pass cisco123
+login
+logg syn
+exec 5
+exit
+ser pass
+banner motd "Privat Halozat!"
+copy run st
+
+
+int g0/1
+no sh
+desc Kecskemet_Iroda_Tuzfal fele
+exit
+
+ip domain-name xyz.hu
+crypto k g r 
+2048
+username rg priv 15 sec cisco123
+ip ssh ver 2
+line vty 0 15
+login local
+transport input ssh
+exit
+exit
+
+copy run st
 
 
 
