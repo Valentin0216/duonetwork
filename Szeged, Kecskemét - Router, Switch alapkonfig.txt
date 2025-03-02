@@ -126,16 +126,23 @@ exec 5
 exit
 ser pass
 banner motd "Privat Halozat!"
-copy run st
+ipv6 uni
 
 
 int g0/1
 ip add 172.16.20.1 255.255.255.0
+ipv6 add 2001:acad:20::1/64
+ipv6 add fe80::1 link
 no sh
 desc Kecskemet_Bolt_Switch fele
 exit
 
 int g0/0
+ip add 10.10.10.2 255.255.255.252
+desc Kecskemet_Iroda_R fele
+no sh
+exit
+
 
 ip domain-name xyz.hu
 crypto k g r 
@@ -176,6 +183,12 @@ exit
 ser pass
 banner motd "Privat Halozat!"
 copy run st
+
+int vlan 1
+ip add 172.16.20.50 255.255.255.0
+no sh
+exit
+
 
 
 int g0/1
@@ -231,11 +244,21 @@ int g0/0
 ip add 172.16.10.1 255.255.255.128
 desc Kecskemet_Tuzfal fele
 exit
+int g0/1
+ip add 10.10.10.1 255.255.255.252
+desc Kecskemet_Bolt_R fele
+no sh
+exit
 int g0/2
 ip add 172.16.10.129 255.255.255.128
 desc Kecskemet_Switch_Iroda2 fele
+int s0/0/0
+ip add 85.50.50.17 255.255.255.252
+desc ISP fele
+no sh
+exit
 
--- int s0/0/0 nincs --
+
 
 ip domain-name xyz.hu
 crypto k g r 
@@ -276,6 +299,11 @@ exit
 ser pass
 banner motd "Privat Halozat!"
 copy run st
+
+int vlan 1
+no sh
+ip add 172.16.10.150 255.255.255.128
+exit
 
 
 int g0/1
@@ -328,6 +356,11 @@ exit
 ser pass
 banner motd "Privat Halozat!"
 copy run st
+
+int vlan 1
+no sh
+ip add 172.16.10.50 255.255.255.128
+exit
 
 
 int g0/1
