@@ -227,6 +227,21 @@ exit
 
 copy running-config startup-config
 
+#VLANOK PORTHOZ RENDELÉSE
+int range fa0/1-4
+swit mode acc
+swit acc vlan 10
+exit
+
+int range fa0/5-20
+sh
+exit
+
+int gig0/2
+sh
+exit
+
+
 ##############################################################################
 ##############################################################################
 ##############################################################################
@@ -287,6 +302,20 @@ exit
 exit
 
 copy running-config startup-config
+
+#VLANOK PORTHOZ RENDELÉSE
+int range fa0/1-4
+swit mode acc
+swit acc vlan 20
+exit
+
+int range fa0/5-20
+sh
+exit
+
+int gig0/2
+sh
+exit
 
 ##############################################################################
 ##############################################################################
@@ -349,6 +378,16 @@ exit
 
 copy running-config startup-config
 
+#VLANOK PORTHOZ RENDELÉSE
+int range fa0/1-4
+swit mode acc
+swit acc vlan 30
+exit
+
+int range fa0/5-20
+sh
+exit
+
 ##############################################################################
 ##############################################################################
 ##############################################################################
@@ -409,3 +448,13 @@ exit
 exit
 
 copy running-config startup-config
+
+#VLANOK PORTHOZ RENDELÉSE
+int range fa0/1-4
+swit mode acc
+swit acc vlan 199
+exit
+
+int range fa0/5-24
+sh
+exit
