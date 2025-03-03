@@ -32,6 +32,19 @@ no sh
 desc Szeged_Raktar_Switch fele
 exit
 
+int g0/1
+sh
+desc nem_hasznalt_port
+exit
+int g0/2
+sh
+desc nem_hasznalt_port
+exit
+int s0/0/1
+sh
+desc nem_hasznalt_port
+exit
+
 int s0/0/0
 ip add 85.50.50.13 255.255.255.252
 no sh
@@ -143,6 +156,12 @@ desc Kecskemet_Iroda_R fele
 no sh
 exit
 
+int g0/2
+sh
+desc nem_hasznalt_port
+exit
+
+
 
 ip domain-name xyz.hu
 crypto k g r 
@@ -189,6 +208,14 @@ ip add 172.16.20.50 255.255.255.0
 no sh
 exit
 
+
+int g0/2
+sh
+desc nem_hasznalt_port
+exit
+int ran f0/1-21
+sh
+desc nem_hasznalt_port
 
 
 int g0/1
@@ -239,6 +266,12 @@ ser pass
 banner motd "Privat Halozat!"
 copy run st
 
+ip dhcp exc 172.16.10.1 172.16.10.14
+ip dhcp pool DHCP1
+default 172.16.10.1
+dns-s 8.8.8.8
+domain xyz.hu
+netw 172.16.10.0 255.255.255.128
 
 int g0/0
 ip add 172.16.10.1 255.255.255.128
@@ -256,6 +289,11 @@ int s0/0/0
 ip add 85.50.50.17 255.255.255.252
 desc ISP fele
 no sh
+exit
+
+int s0/0/0
+sh
+desc nem_hasznalt_port
 exit
 
 
@@ -359,8 +397,15 @@ copy run st
 
 int vlan 1
 no sh
-ip add 172.16.10.50 255.255.255.128
+ip add 172.16.10.10 255.255.255.128
 exit
+
+int ran f0/8-24
+sh
+desc nem_hasznalt_port
+exit
+
+
 
 
 int g0/1
