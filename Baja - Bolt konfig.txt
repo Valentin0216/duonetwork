@@ -2,20 +2,6 @@
 ####### Baja - Bolt #######
 ###########################
 
-###############################
-Konfigurálandó eszközök:
-	- R_Bolt_Baja (NINCS KÉSZ)
-	- SW_Bolt_Baja (KÉSZ)
-	- PC_Bolt_Baja (KÉSZ)
-	- PC_Bolt_Baja_2 (KÉSZ)
-	- Printer_Bolt_Baja (KÉSZ)
-###############################
-
-#############
-AMI MÉG KELL:
- - ROUTOLÁS (R_Baja)
-#############
-
 ############
 R_Bolt_Baja:
 ############
@@ -68,6 +54,8 @@ transport input ssh
 exit
 
 copy running-config startup-config
+
+ip route 0.0.0.0 0.0.0.0 85.50.50.9
 
 
 #############
