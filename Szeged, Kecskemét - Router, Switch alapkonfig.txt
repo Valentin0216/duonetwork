@@ -64,10 +64,19 @@ exit
 
 ip route 0.0.0.0 0.0.0.0 85.50.50.14
 
+
 copy run st
 
 
+ip nat inside source static 172.16.1.250 209.163.10.100
+ip nat pool natpool 209.163.10.101 209.163.10.150 netmask 255.255.255.0
+access-list 10 permit 172.16.1.0 0.0.0.127
+ip nat inside source list 10 pool natpool
 
+int gig0/0
+ip nat inside
+int se0/0/0
+ip nat outside
 
 |----------------------|
 |Szeged - Raktár Switch|
