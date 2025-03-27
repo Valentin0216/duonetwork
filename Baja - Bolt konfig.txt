@@ -57,6 +57,8 @@ copy running-config startup-config
 
 ip route 0.0.0.0 0.0.0.0 85.50.50.9
 
+int se0/0/0
+encap ppp
 
 #############
 SE_Bolt_Baja:
