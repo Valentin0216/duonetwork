@@ -46,6 +46,7 @@ desc nem_hasznalt_port
 exit
 
 int s0/0/0
+enc ppp
 ip add 85.50.50.13 255.255.255.252
 no sh
 desc 
@@ -308,16 +309,11 @@ int g0/2
 ip add 172.16.10.129 255.255.255.128
 desc Kecskemet_Switch_Iroda2 fele
 int s0/0/0
+enc ppp
 ip add 85.50.50.17 255.255.255.252
 desc ISP fele
 no sh
 exit
-
-int s0/0/0
-sh
-desc nem_hasznalt_port
-exit
-
 
 
 ip domain-name xyz.hu
@@ -341,6 +337,17 @@ exit
 exit
 
 ip route 0.0.0.0 0.0.0.0 85.50.50.18
+
+access-list 122 deny tcp 192.168.50.0 0.0.0.255 host 172.16.10.3 eq ftp
+access-list 122 deny tcp 172.16.20.0 0.0.0.255 host 172.16.10.3 eq ftp
+access-list 122 deny tcp 172.16.1.0 0.0.0.255 host 172.16.10.3 eq ftp
+access-list 122 deny tcp 192.168.10.0 0.0.0.255 host 172.16.10.3 eq ftp
+access-list 122 deny tcp 192.168.20.0 0.0.0.255 host 172.16.10.3 eq ftp
+access-list 122 permit ip any any
+
+int s0/0/0
+ip access-group 122 in
+
 
 license boot module c2900 techno securityk9
 yes
