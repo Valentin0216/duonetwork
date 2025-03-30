@@ -112,6 +112,24 @@ ip add 172.16.1.50 255.255.255.0
 no sh
 exit
 
+int g4/1
+swit mode access
+swit port-security
+swit port-sec max 5
+swit port-security mac-address sticky
+swit port-sec violation restrict
+int g5/1
+swit mode access
+swit port-security
+swit port-sec max 5
+swit port-security mac-address sticky
+swit port-sec violation restrict
+int g6/1
+swit mode access
+swit port-security
+swit port-sec max 5
+swit port-security mac-address sticky
+swit port-sec violation restrict
 
 ip domain-name xyz.hu
 crypto k g r 
@@ -250,6 +268,15 @@ int g0/1
 no sh
 desc Kecskemet_Bolt_Router fele
 exit
+
+int ran f0/22-24
+swit mode access
+swit port-security
+swit port-sec max 5
+swit port-security mac-address sticky
+swit port-sec violation restrict
+
+
 
 ip domain-name xyz.hu
 crypto k g r 
@@ -460,6 +487,13 @@ exit
 
 copy run st
 
+int g3/1
+swit mode access
+swit port-security
+swit port-sec max 5
+swit port-security mac-address sticky
+swit port-sec violation restrict
+
 |------------------------|
 |Kecskemét - Iroda Switch|
 |------------------------|
@@ -514,6 +548,13 @@ login local
 transport input ssh
 exit
 exit
+
+int ran f0/1-6
+swit mode access
+swit port-security
+swit port-sec max 5
+swit port-security mac-address sticky
+swit port-sec violation restrict
 
 copy run st
 
