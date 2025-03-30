@@ -100,3 +100,10 @@ transport input ssh
 exit
 exit
 copy running-config startup-config
+
+int range fa0/1-3
+swit mode access
+swit port-security
+swit port-sec max 5
+swit port-security mac-address sticky
+swit port-sec violation restrict

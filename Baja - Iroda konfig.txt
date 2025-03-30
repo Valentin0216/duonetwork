@@ -364,6 +364,13 @@ swit trunk native vlan 199
 no sh
 exit
 
+#PORT SECURIY
+int range fa0/1-4
+swit port-security
+swit port-sec max 5
+swit port-security mac-address sticky
+swit port-sec violation restrict
+
 
 ##############################################################################
 ##############################################################################
@@ -475,6 +482,14 @@ swit trunk native vlan 199
 no sh
 exit
 
+#PORT SECURIY
+int range fa0/1-4
+swit port-security
+swit port-sec max 5
+swit port-security mac-address sticky
+swit port-sec violation restrict
+
+
 ##############################################################################
 ##############################################################################
 ##############################################################################
@@ -569,6 +584,14 @@ swit trunk all vlan 10,20,30,199
 swit trunk native vlan 199
 no sh
 exit
+
+#PORT SECURIY
+int range fa0/1-4
+swit port-security
+swit port-sec max 5
+swit port-security mac-address sticky
+swit port-sec violation restrict
+
 ##############################################################################
 ##############################################################################
 ##############################################################################
