@@ -79,6 +79,9 @@ ip nat inside
 int se0/0/0
 ip nat outside
 
+access-list 111 deny tcp 172.16.1.0 0.0.0.255 host 172.16.10.3 eq ftp
+int gig0/0
+ip access-group 111 out
 |----------------------|
 |Szeged - Raktár Switch|
 |----------------------|
@@ -173,8 +176,6 @@ sh
 desc nem_hasznalt_port
 exit
 
-
-
 ip domain-name xyz.hu
 crypto k g r 
 2048
@@ -187,7 +188,11 @@ exit
 exit
 
 
+access-list 100 deny tcp 172.16.20.0 0.0.0.255 host 172.16.10.3 eq ftp
+access-list 100 permit ip any any
 
+int gig0/1
+ip access-group 100 in
 
 router eigrp 10
 eigrp router-id 2.2.2.2
@@ -338,15 +343,14 @@ exit
 
 ip route 0.0.0.0 0.0.0.0 85.50.50.18
 
-access-list 122 deny tcp 192.168.50.0 0.0.0.255 host 172.16.10.3 eq ftp
-access-list 122 deny tcp 172.16.20.0 0.0.0.255 host 172.16.10.3 eq ftp
-access-list 122 deny tcp 172.16.1.0 0.0.0.255 host 172.16.10.3 eq ftp
-access-list 122 deny tcp 192.168.10.0 0.0.0.255 host 172.16.10.3 eq ftp
-access-list 122 deny tcp 192.168.20.0 0.0.0.255 host 172.16.10.3 eq ftp
-access-list 122 permit ip any any
+access-list 111 permit tcp 192.168.30.0 0.0.0.255 host 172.16.10.3 eq ftp
+access-list 111 permit tcp 192.168.199.0 0.0.0.255 host 172.16.10.3 eq ftp
+access-list 111 deny tcp any host 172.16.10.3 eq ftp
+access-list 111 permit ip any any
 
-int s0/0/0
-ip access-group 122 in
+int se0/0/0
+ip access-group 111 in
+
 
 
 license boot module c2900 techno securityk9
