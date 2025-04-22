@@ -371,6 +371,12 @@ swit port-sec max 5
 swit port-security mac-address sticky
 swit port-sec violation restrict
 
+#VTP SZERVER
+vtp mode server
+vtp domain xyz.hu
+vtp password cisco123
+vtp ver 2
+
 
 ##############################################################################
 ##############################################################################
@@ -410,25 +416,11 @@ login local
 transport input ssh
 exit
 
-vlan 10
-name Iroda
-exit
-
-vlan 20
-name Marketing
-exit
-
-vlan 30
-name Fejlesztok
-exit
-
-vlan 199
-name Native
-exit
-
-vlan 200
-name Blackhole
-exit
+#VTP KLIENS
+vtp mode client
+vtp domain xyz.hu
+vtp password cisco123
+vtp ver 2
 exit
 
 copy running-config startup-config
@@ -528,25 +520,11 @@ login local
 transport input ssh
 exit
 
-vlan 10
-name Iroda
-exit
-
-vlan 20
-name Marketing
-exit
-
-vlan 30
-name Fejlesztok
-exit
-
-vlan 199
-name Native
-exit
-
-vlan 200
-name Blackhole
-exit
+#VTP KLIENS
+vtp mode client
+vtp domain xyz.hu
+vtp password cisco123
+vtp ver 2
 exit
 
 copy running-config startup-config
