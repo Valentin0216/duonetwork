@@ -25,9 +25,13 @@ ser pass
 banner motd "Privat Halozat!"
 copy run st
 
+ipv6 uni
+
 
 int g0/0
 ip add 172.16.1.1 255.255.255.0
+ipv6 add 2001:ACAD:30::1/64
+ipv6 add fe80::1 link
 no sh
 desc Szeged_Raktar_Switch fele
 exit
