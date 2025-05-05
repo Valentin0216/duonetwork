@@ -22,7 +22,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Privat Halozat!"
+banner motd "Private Device!"
 copy run st
 
 ipv6 uni
@@ -108,7 +108,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Privat Halozat!"
+banner motd "Private Device!"
 copy run st
 
 int vlan 1
@@ -218,7 +218,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Privat Halozat!"
+banner motd "Private Device!"
 copy run st
 
 int vlan 1
@@ -290,7 +290,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Privat Halozat!"
+banner motd "Private Device!"
 copy run st
 
 ip dhcp exc 172.16.10.1 172.16.10.14
@@ -425,7 +425,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Privat Halozat!"
+banner motd "Private Device!"
 copy run st
 
 int vlan 1
@@ -489,7 +489,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Privat Halozat!"
+banner motd "Private Device!"
 copy run st
 
 int vlan 1
