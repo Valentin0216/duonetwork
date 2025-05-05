@@ -26,7 +26,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Ez egy privat router!"
+banner motd "Private device!"
 ipv6 unicast-routing
 
 int gig0/1
@@ -82,7 +82,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Ez egy privat switch!"
+banner motd "Private device!"
 
 int vlan1
 ip add 192.168.50.2 255.255.255.0

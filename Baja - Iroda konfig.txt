@@ -26,7 +26,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Ez egy privat router!"
+banner motd "Private device!"
 ipv6 unicast-routing
 
 int gig0/1.10
@@ -160,6 +160,14 @@ int se0/0/0
 ip access-group ftphozzaferes in
 exit
 
+#STATIKUS NAT WINDOWS SZERVERRE	
+ip nat inside source static 192.168.199.100 209.165.100.100
+
+int gig0/1
+ip nat inside
+int se0/0/0
+ip nat outside
+
 ##############################################################################
 ##############################################################################
 ##############################################################################
@@ -188,7 +196,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Ez egy privat router!"
+banner motd "Private device!"
 ipv6 unicast-routing
 
 int gig0/1.10
@@ -280,7 +288,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Ez egy privat switch!"
+banner motd "Private device!"
 
 ip domain-name xyz.hu
 crypto key generate rsa
@@ -377,7 +385,6 @@ vtp domain xyz.hu
 vtp password cisco123
 vtp ver 2
 
-
 ##############################################################################
 ##############################################################################
 ##############################################################################
@@ -404,7 +411,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Ez egy privat switch!"
+banner motd "Private device!"
 
 ip domain-name xyz.hu
 crypto key generate rsa
@@ -481,7 +488,6 @@ swit port-sec max 5
 swit port-security mac-address sticky
 swit port-sec violation restrict
 
-
 ##############################################################################
 ##############################################################################
 ##############################################################################
@@ -508,7 +514,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Ez egy privat switch!"
+banner motd "Private device!"
 
 ip domain-name xyz.hu
 crypto key generate rsa
@@ -598,7 +604,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Ez egy privat router!"
+banner motd "Private device!"
 ipv6 unicast-routing
 
 int se0/0/0
@@ -641,7 +647,7 @@ logg syn
 exec 5
 exit
 ser pass
-banner motd "Ez egy privat router!"
+banner motd "Private device!"
 ipv6 unicast-routing
 
 int se0/0/0
