@@ -4,3 +4,4 @@ Csapattagok:
 <li>Falusi Ramón</li>
 <li>Simon Valentin Márk</li>
 </ul> 
+<b>Jira:</b> https://duonetwork.atlassian.net/jira/software/projects/DUO/boards/1
