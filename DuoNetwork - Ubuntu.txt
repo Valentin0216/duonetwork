@@ -61,7 +61,8 @@ sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-availab
 sudo nano /etc/apache2/sites-available/duonetwork.conf
 
 <VirtualHost *:80>
-    ServerName www.xyz.local
+    ServerName xyz.local
+    ServerAlias www.xyz.local
     DocumentRoot /var/www/html/xyz/
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
@@ -84,6 +85,17 @@ nano index.html
 sudo a2ensite duonetwork.conf
 Ezek után el kellene érni a 172.16.10.3 IP címmel a weboldalunkat
 
+---- 6. lépés ----
+nano /etc/resolv.conf
+
+nameserver 172.16.10.3
+options edns0 trust-ad
+search .
+
+nano /etc/hosts
+
+172.16.10.3 xyz.local
+
 ---- 7. lépés ----
 BIND9 beállítása
 
@@ -94,27 +106,25 @@ nano db.xyz.local
 ; BIND data file for local loopback interface
 ;
 $TTl	604800
-@	IN	SOA	xyz.local. root.xyz.local. (
+@	IN	SOA	ns1.xyz.local. root.xyz.local. (
 				2	; Serial
 			   604800	; Refresh
 			    86400	; Retry
 			  2419200	; Expire
 			   604800	; Negative Cache TTL
 ;
-@	IN	NS	xyz.local.
+@	IN	NS	ns1.xyz.local.
+ns1     IN      A       172.16.10.3
 @	IN	A	172.16.10.3
 @	IN	AAAA	::1
 www	IN	CNAME	xyz.local.
 
 
-nano /etc/bind/named.conf.default-zones
+nano /etc/bind/named.conf.local
 zone "xyz.local" {
   type master;
   file "/etc/bind/db.xyz.local";
 };
-
-nano /etc/hosts
-172.16.10.3 www.xyz.local
 
 ---- 8. lépés ----
 
